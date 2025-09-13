@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: tan;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: black;
+      font-size: 24px;
+    }
+
+    form {
+      background: #e28f8f;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 320px;
+    }
+
+    form div {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: black;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #007bff;
+      outline: none;
+      background: #f0f8ff;
+    }
+
+    .highlight {
+      border: 2px solid #e74c3c !important;
+      background-color: #ffe6e6 !important;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #000b18;
+      color: white;
+      cursor: pointer;
+      align-items: center;
+    }
+
+    button:hover {
+      background:blue ;
+    }
+  </style>
+</head>
+<body>
+  <form id="myForm">
+    <h2>User Registration</h2>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+    </div>
+    <div>
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age">
+    </div>
+    <button type="button" id="submitBtn">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('myForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    submitBtn.addEventListener('click', () => {
+      // Reset highlights
+      const inputs = form.querySelectorAll('input');
+      inputs.forEach(input => input.classList.remove('highlight'));
+
+      // Make all labels bold
+      const labels = form.querySelectorAll('label');
+      labels.forEach(label => {
+        label.style.fontWeight = 'bold';
+      });
+
+      // Highlight mandatory fields if empty
+      const mandatoryFields = ['name', 'email'];
+      mandatoryFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (!field.value.trim()) {
+          field.classList.add('highlight');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
